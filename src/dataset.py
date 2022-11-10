@@ -9,7 +9,6 @@ class MyImageFolder(Dataset):
         super(MyImageFolder, self).__init__()
         self.data = []
         self.root_dir = root_dir
-        self.class_names = os.listdir(root_dir)
         self.high_res = resolution
         self.low_res = resolution // 4
 
@@ -29,20 +28,15 @@ class MyImageFolder(Dataset):
             ]
         )
 
-        for index, name in enumerate(self.class_names):
-            if index > 3000:
-                break
-            files = os.listdir(os.path.join(root_dir, name))
-            self.data += list(zip(files, [index] * len(files)))
+        self.data = os.listdir(root_dir)
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, index):
-        img_file, label = self.data[index]
-        root_and_dir = os.path.join(self.root_dir, self.class_names[label])
+        img_file = self.data[index]
 
-        image = Image.open(os.path.join(root_and_dir, img_file))
+        image = Image.open(os.path.join(self.root_dir, img_file))
         high_res = self.highres_transform(image)
         low_res = self.lowres_transform(image)
         return low_res, high_res
