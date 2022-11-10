@@ -30,10 +30,19 @@ python train.py
 ## Result
 <img src="https://github.com/Tagirov0/super-resolution/blob/main/test/result_srgan.jpg" width=100% height=100%>
 
+* Srresnet: 300 epochs
+* SRGAN 250 epochs with pretrained srresnet
+
 Model            | SSIM      | PSNR 
 ---              |   ---     | ---   
 SRGAN            |  0.86     | 29.75
 SRRESNET         |  0.90     | 32.65 
+
+### Hyperparameters
+* batch_size = 64
+* lr = 1e-4
+* betas = (0.9, 0.999)
+* image size = 96x96
 
 ## Perfomance
 #### GPU: Tesla T4
