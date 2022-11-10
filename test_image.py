@@ -3,9 +3,9 @@ import gdown
 import torch
 import argparse
 from PIL import Image
-from src.model import Generator
+from model import Generator
+import srgan_config as config
 import matplotlib.pyplot as plt
-import src.srgan_config as config
 from torchvision.utils import save_image
 import torchvision.transforms.functional as FT
 

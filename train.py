@@ -70,13 +70,13 @@ def train(
             'discriminator': discriminator.state_dict(),
             'optimizer_g': optimizer_g.state_dict(),
             'optimizer_d': optimizer_d.state_dict()},
-            'checkpoint_srgan_celeba.pth.tar'
+            'checkpoint_srgan.pth.tar'
         )
 
 def show_images(images, nmax=16):
     fig, ax = plt.subplots(figsize=(4, 4))
     ax.set_xticks([]); ax.set_yticks([])
-    ax.imshow(make_grid(images.detach()[:nmax], nrow=8).permute(1, 2, 0))
+    ax.imshow(make_grid(images.detach()[:nmax], nrow=4).permute(1, 2, 0))
 
 def show_batch(dl, nmax=16):
     for images, _ in dl:
@@ -94,6 +94,7 @@ def save_samples(gen, index, latent_tensors, show=True):
         ax.imshow(make_grid(fake_images.cpu().detach(), nrow=4).permute(1, 2, 0))
 
 def main():
+  
     data = MyImageFolder(
         srgan_config.train_dataset_path, 
         resolution=srgan_config.image_size
@@ -158,4 +159,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
