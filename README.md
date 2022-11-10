@@ -28,7 +28,7 @@ python train.py
 ```
 
 ## Result
-<img src="https://github.com/Tagirov0/super-resolution/blob/main/test/result_srgan.jpg" width=100% height=100%>
+<img src="https://github.com/Tagirov0/super-resolution/blob/main/test/result.jpg?raw=true" width=80% height=80%>
 
 * Srresnet: 300 epochs
 * SRGAN 250 epochs with pretrained srresnet
