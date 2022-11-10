@@ -32,5 +32,5 @@ python train.py
 
 ## Perfomance
 GPU: Tesla T4
-Single image
+It takes 6 seconds to process one image 1080x720
 
