@@ -3,9 +3,9 @@ import gdown
 import torch
 import argparse
 from PIL import Image
-from model import Generator
+from src.model import Generator
 import matplotlib.pyplot as plt
-import srgan_config_ as srgan_config
+import src.srgan_config as config
 from torchvision.utils import save_image
 import torchvision.transforms.functional as FT
 
@@ -22,8 +22,8 @@ else:
 def convert_image(img, source, target):
     imagenet_mean = torch.FloatTensor([0.485, 0.456, 0.406]).unsqueeze(1).unsqueeze(2)
     imagenet_std = torch.FloatTensor([0.229, 0.224, 0.225]).unsqueeze(1).unsqueeze(2)
-    imagenet_mean_cuda = torch.FloatTensor([0.485, 0.456, 0.406]).to(srgan_config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
-    imagenet_std_cuda = torch.FloatTensor([0.229, 0.224, 0.225]).to(srgan_config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
+    imagenet_mean_cuda = torch.FloatTensor([0.485, 0.456, 0.406]).to(config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
+    imagenet_std_cuda = torch.FloatTensor([0.229, 0.224, 0.225]).to(config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
 
     assert source in {'pil', '[0, 1]', '[-1, 1]'}, "Cannot convert from source format %s!" % source
 
@@ -66,14 +66,14 @@ def visualize(img, srgan_generator):
     return sr_img_srgan
 
 def main():
-    if not os.path.exists(srgan_config.pretrained_weights_path):
+    if not os.path.exists(config.pretrained_weights_path):
         if not os.path.exists('weights'):
             os.mkdir('weights')
-        output = srgan_config.pretrained_weights_path
-        gdown.download(url=srgan_config.weights_url, output=output, quiet=False, fuzzy=True)
+        output = config.pretrained_weights_path
+        gdown.download(url=config.weights_url, output=output, quiet=False, fuzzy=True)
 
     generator = Generator().to(DEVICE)
-    checkpoint = torch.load(srgan_config.pretrained_weights_path)
+    checkpoint = torch.load(config.pretrained_weights_path)
     generator.load_state_dict(checkpoint['generator'])
 
     generator.eval()
