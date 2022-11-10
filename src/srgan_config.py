@@ -1,10 +1,5 @@
 import torch
 
-imagenet_mean = torch.FloatTensor([0.485, 0.456, 0.406]).unsqueeze(1).unsqueeze(2)
-imagenet_std = torch.FloatTensor([0.229, 0.224, 0.225]).unsqueeze(1).unsqueeze(2)
-imagenet_mean_cuda = torch.FloatTensor([0.485, 0.456, 0.406]).to(srgan_config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
-imagenet_std_cuda = torch.FloatTensor([0.229, 0.224, 0.225]).to(srgan_config.device).unsqueeze(0).unsqueeze(2).unsqueeze(3)
-
 image_size = 96
 batch_size = 64
 
