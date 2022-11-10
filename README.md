@@ -30,6 +30,11 @@ python train.py
 ## Result
 <img src="https://github.com/Tagirov0/super-resolution/blob/main/test/result_srgan.jpg" width=100% height=100%>
 
+Model            | SSIM      | PSNR 
+---              |   ---     | ---   
+SRGAN            |  0.86      | 29.75
+SRRESNET         |  -     | - 
+
 ## Perfomance
 #### GPU: Tesla T4
 It takes 6 seconds to process one image 1080x720
