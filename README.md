@@ -16,8 +16,8 @@ pip install -r requirements.txt
 python test_image.py
 
 optional arguments:
---image_name                  test low resolution image name
---test_mode                   using GPU or CPU [default value is 'GPU'](choices:['GPU', 'CPU'])
+--image_name                  low resolution image name
+--test_mode                   using GPU or CPU
 ```
 
 ### Train
@@ -31,6 +31,6 @@ python train.py
 <img src="https://github.com/Tagirov0/super-resolution/blob/main/test/result_srgan.jpg" width=100% height=100%>
 
 ## Perfomance
-GPU: Tesla T4
+#### GPU: Tesla T4
 It takes 6 seconds to process one image 1080x720
 
