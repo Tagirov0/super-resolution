@@ -32,8 +32,8 @@ python train.py
 
 Model            | SSIM      | PSNR 
 ---              |   ---     | ---   
-SRGAN            |  0.86      | 29.75
-SRRESNET         |  -     | - 
+SRGAN            |  0.86     | 29.75
+SRRESNET         |  0.90     | 32.65 
 
 ## Perfomance
 #### GPU: Tesla T4
