@@ -13,9 +13,9 @@ pip install -r requirements.txt
 
 ### Test image
 ```
-python test_image.py
+python test_image.py --image_name IMAGE_NAME
 
-optional arguments:
+arguments:
 --image_name                  low resolution image name
 --test_mode                   using GPU or CPU
 ```
