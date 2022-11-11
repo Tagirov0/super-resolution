@@ -66,17 +66,19 @@ def visualize(img, srgan_generator):
     return sr_img_srgan
 
 def main():
-    if not os.path.exists(config.pretrained_weights_path):
+    if not os.path.exists(config.generator_weights_path):
         if not os.path.exists('weights'):
             os.mkdir('weights')
-        output = config.pretrained_weights_path
-        gdown.download(url=config.weights_url, output=output, quiet=False, fuzzy=True)
+        output = config.generator_weights_path
+        gdown.download(url=config.generator_weight_url, output=output, quiet=False, fuzzy=True)
 
-    generator = Generator().to(DEVICE)
-    checkpoint = torch.load(config.pretrained_weights_path)
-    generator.load_state_dict(checkpoint['generator'])
+    generator = Generator().eval()
 
-    generator.eval()
+    if torch.cuda.is_available():  
+        generator.load_state_dict(torch.load(config.generator_weights_path))
+    else:
+        generator.load_state_dict(torch.load(config.generator_weights_path, map_location='cpu'))
+
     sr_img = visualize(opt.image_name, generator)
     sr_img.save('sr_x4_' + opt.image_name)
 
